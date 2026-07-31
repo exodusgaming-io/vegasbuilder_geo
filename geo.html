@@ -9,35 +9,47 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;500&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;500&family=Roboto+Mono:wght@400&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
-  <main class="geo">
-    <div class="geo__panel">
-      <h1 class="geo__title">S**t.<br />Vegas Builder isn't available in your area.</h1>
+  <div class="geo">
+    <aside class="geo__decor geo__decor--left" aria-hidden="true"></aside>
 
-      <div class="geo__states">
-        <p class="geo__states-lead">
-          Vegas Builder is currently available only in the U.S., excluding the following states:
+    <main class="geo__center">
+      <span class="geo__tag">Build stuff</span>
+
+      <div class="geo__hero">
+        <h1 class="geo__title">S**t.<br />Vegas Builder isn't available in your area.</h1>
+
+        <div class="geo__states">
+          <p class="geo__states-lead">
+            Vegas Builder is currently available only in the U.S., excluding the following states:
+          </p>
+          <!-- Excluded states — update here. Keep in sync with the Cloudflare block rule for vegasbuilder.com. -->
+          <p class="geo__states-list">Connecticut, Idaho, Montana, Nevada, and Washington</p>
+        </div>
+      </div>
+
+      <span class="geo__tag">Win stuff</span>
+
+      <div class="geo__support">
+        <p class="geo__support-text">
+          Think you're in an eligible location and got this message by mistake? Don't worry, feel free to
+          reach out to our support team using one of the options below. We're always happy to help!
         </p>
-        <!-- Excluded states — update here. Keep in sync with the Cloudflare block rule for vegasbuilder.com. -->
-        <p class="geo__states-list">Connecticut, Idaho, Montana, Nevada, and Washington</p>
+        <div class="geo__btns">
+          <a class="btn btn--primary" href="mailto:support@vegasbuilder.com">E-Mail</a>
+          <a class="btn btn--secondary" href="#" id="live-chat-btn">Live Chat</a>
+        </div>
       </div>
-    </div>
+    </main>
 
-    <div class="geo__support">
-      <p class="geo__support-text">
-        Think you're in an eligible location and got this message by mistake? Don't worry, feel free to
-        reach out to our support team using one of the options below. We're always happy to help!
-      </p>
-      <div class="geo__btns">
-        <a class="btn btn--primary" href="mailto:support@vegasbuilder.com">E-Mail</a>
-        <a class="btn btn--secondary" href="#" id="live-chat-btn">Live Chat</a>
-      </div>
-    </div>
-  </main>
+    <aside class="geo__decor geo__decor--right" aria-hidden="true"></aside>
+  </div>
 
   <script>
     // The "Live Chat" button asks the parent frame (the Cloudflare block page, which boots
