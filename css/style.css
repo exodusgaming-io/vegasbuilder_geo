@@ -66,10 +66,11 @@ body {
   content: '';
   position: absolute;
   inset: 0;
+  z-index: 0;
   background: radial-gradient(120% 85% at 50% 42%, rgba(28, 25, 18, 0.30) 0%, rgba(28, 25, 18, 0.80) 100%);
   pointer-events: none;
 }
-.geo__center > * { position: relative; z-index: 1; }
+.geo__center > * { position: relative; z-index: 2; }
 
 /* faint mono labels top/bottom, per Figma */
 .geo__tag {
@@ -183,8 +184,29 @@ body {
 }
 .btn--secondary:hover { background: rgba(255, 213, 75, 0.12); }
 
-/* mobile: drop the side decor panels (matches the GeoBlock_Mobile frame) */
+/* narrow (tablet + phone): single-column 50/50 — desert + text on the top half,
+   the decor map on the bottom half. `center top` pins the map so it never jumps
+   to the globe as the width changes; support box pinned to the bottom. */
 @media (max-width: 820px) {
+  .geo { flex-direction: column; }
   .geo__decor { display: none; }
-  .geo__center { flex: 1 1 100%; gap: 40px; padding: 40px 18px; }
+
+  .geo__center {
+    flex: 1 1 auto;
+    min-height: 100vh;
+    justify-content: flex-start;
+    gap: 22px;
+    padding: 40px 20px 22px;
+  }
+  .geo__center::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 50%;
+    z-index: 1;
+    background: url('../images/mobile-decor.svg') center top / cover no-repeat;
+  }
+  .geo__support { margin-top: auto; }
 }
