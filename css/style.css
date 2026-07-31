@@ -206,7 +206,7 @@ body {
     bottom: 0;
     height: 50%;
     z-index: 1;
-    background: url('../images/mobile-decor.svg') center top / cover no-repeat;
+    background: url('../images/mobile-decor.jpg') center top / cover no-repeat;
   }
   .geo__support { margin-top: auto; }
 }
