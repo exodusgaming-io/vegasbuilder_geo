@@ -38,15 +38,45 @@ body {
 }
 
 .geo__decor {
-  flex: 0 0 30%;
-  max-width: 460px;
+  position: relative;
+  flex: 0 0 32%;          /* Figma: 459px @1440 */
+  max-width: 459px;
+  overflow: hidden;
   background-color: var(--black);
-  background-repeat: no-repeat;
-  background-position: center top;
-  background-size: cover;
 }
-.geo__decor--left  { background-image: url('../images/decor-left.png'); }
-.geo__decor--right { background-image: url('../images/decor-right.png'); }
+
+/* Scrolling ticker: two stacked copies of the strip translated up by exactly one
+   copy (-50%) on an infinite loop. The strip's top and bottom edges are dark, so
+   the wrap point is seamless. The right side is offset half a cycle so the two
+   sides never move in sync. Both scroll bottom-to-top. */
+.geo__ticker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  animation: geo-ticker 55s linear infinite;
+  will-change: transform;
+}
+.geo__ticker-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.geo__decor--right .geo__ticker { animation-delay: -13.75s; }
+
+/* mobile decor is the same vertical ticker; hidden until the single-column layout */
+.geo__mobile-decor { display: none; }
+
+@keyframes geo-ticker {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .geo__ticker { animation: none; }
+}
 
 .geo__center {
   position: relative;
@@ -198,15 +228,15 @@ body {
     gap: 22px;
     padding: 40px 20px 22px;
   }
-  .geo__center::after {
-    content: '';
+  .geo__center > .geo__mobile-decor {
+    display: block;
     position: absolute;
     left: 0;
     right: 0;
     bottom: 0;
     height: 50%;
     z-index: 1;
-    background: url('../images/mobile-decor.jpg') center top / cover no-repeat;
+    overflow: hidden;
   }
   .geo__support { margin-top: auto; }
 }
